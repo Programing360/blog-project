@@ -32,6 +32,7 @@ Dashboard Stats: High-level overview displaying Total Posts, Users, Categories, 
 
 Category & User Management: Full control over blog categories and user permissions.
 
+
 🛠️ Tech Stack
 Framework: Laravel 12
 
@@ -42,6 +43,7 @@ Database: MySQL
 Frontend: Blade Templates + Tailwind CSS (via Vite)
 
 Authentication: Laravel Breeze
+
 
 📋 Prerequisites
 Ensure you have the following installed on your machine:
@@ -116,8 +118,6 @@ Access the application in your browser at:
 👉 [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 
-📂 Project Structure Overview
-Plaintext
 blog-project/
 ├── app/
 │   ├── Http/
