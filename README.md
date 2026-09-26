@@ -1,59 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Multi-User Blog Application (Laravel 12)
+A feature-rich, responsive Multi-User Blog Application built with Laravel 12, Tailwind CSS, and MySQL. This application features role-based access control (Admin & Author/User), full post CRUD management, dynamic filtering/searching, an image storage system, and an interactive comment module.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+🚀 Features
+Public Features
+Dynamic Homepage: Browse recent blog posts with pagination.
 
-## About Laravel
+Search & Filters: Search posts by title/content and filter by Categories or Tags.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Single Post View: Detailed post reader page with author meta, dynamic tags, and interactive comment section.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Author Portal
+Post Management (CRUD): Authors can create, view, edit, and delete their own blog posts.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Featured Image Uploads: Image upload support integrated with Laravel's public storage link.
 
-## Learning Laravel
+Draft/Publish Workflow: Set posts as draft or published.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Tag & Category Assignment: Sync multiple tags and assign posts to specific categories.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Interactive & Security Features
+Policy Authorization: Enforced post ownership using PostPolicy—users can only edit/delete their own content.
 
-## Laravel Sponsors
+Comment System: Authenticated users can leave comments. Post authors and comment owners can delete comments.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Role-Based Access Control (RBAC): Distinct permissions for admin and user/author roles.
 
-### Premium Partners
+Admin Panel
+Protected Middleware: Dedicated /admin route group restricted exclusively to users with the admin role.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Dashboard Stats: High-level overview displaying Total Posts, Users, Categories, and Comments.
 
-## Contributing
+Category & User Management: Full control over blog categories and user permissions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+🛠️ Tech Stack
+Framework: Laravel 12
 
-## Code of Conduct
+Language: PHP 8.2+
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Database: MySQL
 
-## Security Vulnerabilities
+Frontend: Blade Templates + Tailwind CSS (via Vite)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Authentication: Laravel Breeze
 
-## License
+📋 Prerequisites
+Ensure you have the following installed on your machine:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+PHP (>= 8.2)
+
+Composer
+
+Node.js (>= 18.x) & NPM
+
+MySQL (via XAMPP, Laragon, or standalone service)
+
+📦 Installation & Setup Guide
+Follow these steps to set up the project locally:
+
+1. Clone the Repository
+Bash
+git clone https://github.com/your-username/blog-project.git
+cd blog-project
+2. Install PHP Dependencies
+Bash
+composer install
+3. Install Node.js Dependencies
+Bash
+npm install
+4. Environment Configuration
+Duplicate the .env.example file to create your .env configuration file:
+
+Bash
+cp .env.example .env
+Open .env and configure your database credentials:
+
+Code snippet
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=blog_db
+DB_USERNAME=root
+DB_PASSWORD=
+5. Generate Application Key
+Bash
+php artisan key:generate
+6. Run Migrations & Database Seeders
+Run database migrations along with predefined seeders (creates an Admin user, default categories, tags, and dummy posts):
+
+Bash
+php artisan migrate --seed
+Default Admin Credentials:
+
+Email: admin@example.com
+
+Password: password
+
+7. Link Storage Folder
+Create the symbolic link required for image uploads to be accessible publicly:
+
+Bash
+php artisan storage:link
+(If php is not recognized globally on Windows, use C:\xampp\php\php artisan storage:link)
+
+
+💻 Running the Application
+1. Compile Frontend Assets (Vite)
+Bash
+npm run dev
+2. Start Local Development Server
+Open a new terminal window/tab and run:
+
+Bash
+php artisan serve
+Access the application in your browser at:
+👉 [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+
+📂 Project Structure Overview
+Plaintext
+blog-project/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/PostController.php       # Admin Management
+│   │   │   ├── Author/PostController.php      # Author CRUD Controller
+│   │   │   ├── CommentController.php          # Comments Controller
+│   │   │   └── PostController.php             # Public Controller
+│   │   └── Middleware/
+│   │       └── CheckRole.php                  # Admin Role Middleware
+│   ├── Models/                                # User, Post, Category, Tag, Comment
+│   └── Policies/
+│       └── PostPolicy.php                     # Ownership & Auth Policies
+├── database/
+│   ├── factories/                             # Model Factories
+│   ├── migrations/                            # DB Schemas
+│   └── seeders/                               # Database Seeders
+├── resources/
+│   └── views/
+│       ├── admin/                             # Admin Dashboard Views
+│       ├── author/                            # Author Portal Views
+│       ├── layouts/                           # Master App Layouts
+│       └── posts/                             # Public Blog Views
+└── routes/
+    └── web.php                                # Web Application Routes
+    
+🔒 License
+This project is open-sourced software licensed under the MIT license.
