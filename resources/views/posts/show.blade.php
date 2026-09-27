@@ -115,7 +115,17 @@
 
                 <h2 class="text-2xl font-bold text-gray-900">
                     Comments
+                    <span class="ml-2 text-base font-normal text-gray-500">
+                        ({{ $post->comments->count() }})
+                    </span>
                 </h2>
+
+                {{-- Flash Messages --}}
+                @if(session('status'))
+                    <div class="mt-4 rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-800">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
                 {{-- Existing Comments --}}
                 @if($post->comments->count() > 0)
@@ -147,13 +157,33 @@
                                     </span>
 
                                     <span class="text-xs text-gray-500">
-                                        {{ $comment->created_at->format('M d, Y') }}
+                                        {{ $comment->created_at->diffForHumans() }}
                                     </span>
+
+                                    {{-- Delete: own comment, or any comment on your own post --}}
+                                    @auth
+                                        @if(auth()->id() === $comment->user_id || auth()->id() === $post->user_id)
+                                            <form
+                                                action="{{ route('comments.destroy', $comment) }}"
+                                                method="POST"
+                                                class="ml-auto"
+                                                onsubmit="return confirm('Delete this comment?');">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="text-xs font-medium text-red-600 hover:text-red-800">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endauth
 
                                 </div>
 
                                 {{-- Comment --}}
-                                <p class="mt-2 text-gray-700 leading-relaxed">
+                                <p class="mt-2 text-gray-700 leading-relaxed whitespace-pre-line">
                                     {{ $comment->body }}
                                 </p>
 
